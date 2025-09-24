@@ -1,3 +1,4 @@
+#if WINDOWS
 using NUnit.Framework;
 using UITest.Appium;
 using UITest.Core;
@@ -250,3 +251,4 @@ public class Issue30403SmallImages : _IssuesUITest
             $"Centered image should not be at top edge for {context}");
     }
 }
+#endif

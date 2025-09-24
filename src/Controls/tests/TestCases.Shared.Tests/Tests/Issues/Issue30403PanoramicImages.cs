@@ -1,3 +1,4 @@
+#if WINDOWS
 using NUnit.Framework;
 using UITest.Appium;
 using UITest.Core;
@@ -208,3 +209,4 @@ public class Issue30403PanoramicImages : _IssuesUITest
             $"Centered image should not be at top edge for {context}");
     }
 }
+#endif
