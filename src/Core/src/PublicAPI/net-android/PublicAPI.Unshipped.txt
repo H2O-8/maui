@@ -1,4 +1,6 @@
 ﻿#nullable enable
+Microsoft.Maui.Converters.GridLengthTypeConverter
+Microsoft.Maui.Converters.GridLengthTypeConverter.GridLengthTypeConverter() -> void
 Microsoft.Maui.Converters.SafeAreaEdgesTypeConverter
 Microsoft.Maui.Converters.SafeAreaEdgesTypeConverter.SafeAreaEdgesTypeConverter() -> void
 Microsoft.Maui.Graphics.MauiDrawable.SetEmptyBorderBrush() -> void
@@ -156,6 +158,10 @@ override Microsoft.Maui.Converters.FlexWrapTypeConverter.CanConvertFrom(System.C
 override Microsoft.Maui.Converters.FlexWrapTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) -> bool
 override Microsoft.Maui.Converters.FlexWrapTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object! value) -> object?
 override Microsoft.Maui.Converters.FlexWrapTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type! destinationType) -> object?
+override Microsoft.Maui.Converters.GridLengthTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Type? sourceType) -> bool
+override Microsoft.Maui.Converters.GridLengthTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) -> bool
+override Microsoft.Maui.Converters.GridLengthTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value) -> object!
+override Microsoft.Maui.Converters.GridLengthTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type? destinationType) -> object!
 override Microsoft.Maui.Converters.SafeAreaEdgesTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Type! sourceType) -> bool
 override Microsoft.Maui.Converters.SafeAreaEdgesTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) -> bool
 override Microsoft.Maui.Converters.SafeAreaEdgesTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value) -> object!
@@ -217,6 +223,7 @@ override Microsoft.Maui.Platform.MauiSwipeRefreshLayout.OnMeasure(int widthMeasu
 *REMOVED*override Microsoft.Maui.Platform.MauiTextView.OnMeasure(int widthMeasureSpec, int heightMeasureSpec) -> void
 override Microsoft.Maui.Platform.MauiTimePicker.DefaultMovementMethod.get -> Android.Text.Method.IMovementMethod?
 override Microsoft.Maui.Platform.MauiWebChromeClient.OnHideCustomView() -> void
+static Microsoft.Maui.Platform.TimePickerExtensions.UpdateTextColor(this Microsoft.Maui.Platform.MauiTimePicker! platformTimePicker, Microsoft.Maui.ITimePicker! timePicker) -> void
 ~override Microsoft.Maui.Platform.MauiWebChromeClient.OnShowCustomView(Android.Views.View view, Android.Webkit.WebChromeClient.ICustomViewCallback callback) -> void
 override Microsoft.Maui.SafeAreaEdges.Equals(object? obj) -> bool
 override Microsoft.Maui.SafeAreaEdges.GetHashCode() -> int
