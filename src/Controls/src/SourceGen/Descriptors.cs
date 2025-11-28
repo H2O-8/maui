@@ -187,12 +187,12 @@ namespace Microsoft.Maui.Controls.SourceGen
 			isEnabledByDefault: true);
 
 		public static DiagnosticDescriptor RequiredProperty = new DiagnosticDescriptor(
-		id: "MAUIX2005",
-		title: new LocalizableResourceString(nameof(MauiGResources.RequiredPropertyTitle), MauiGResources.ResourceManager, typeof(MauiGResources)),
-		messageFormat: new LocalizableResourceString(nameof(MauiGResources.RequiredPropertyMessage), MauiGResources.ResourceManager, typeof(MauiGResources)),
-		category: "XamlInflation",
-		defaultSeverity: DiagnosticSeverity.Warning,
-		isEnabledByDefault: true);
+			id: "MAUIX2005",
+			title: new LocalizableResourceString(nameof(MauiGResources.RequiredPropertyTitle), MauiGResources.ResourceManager, typeof(MauiGResources)),
+			messageFormat: new LocalizableResourceString(nameof(MauiGResources.RequiredPropertyMessage), MauiGResources.ResourceManager, typeof(MauiGResources)),
+			category: "XamlInflation",
+			defaultSeverity: DiagnosticSeverity.Warning,
+			isEnabledByDefault: true);
 
 		// Binding-related diagnostics (MAUIX2041-MAUIX2045 matching XC0041-XC0045)
 		public static DiagnosticDescriptor BindingIndexerNotClosed = new DiagnosticDescriptor(
