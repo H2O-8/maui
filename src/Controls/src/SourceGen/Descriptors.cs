@@ -194,6 +194,14 @@ namespace Microsoft.Maui.Controls.SourceGen
 			defaultSeverity: DiagnosticSeverity.Warning,
 			isEnabledByDefault: true);
 
+		public static DiagnosticDescriptor PropertyElementWithAttribute = new DiagnosticDescriptor(
+			id: "MAUIX2006",
+			title: "Property element has attributes",
+			messageFormat: "{0}",
+			category: "XamlParsing",
+			defaultSeverity: DiagnosticSeverity.Warning,
+			isEnabledByDefault: true);
+
 		// Binding-related diagnostics (MAUIG2041-MAUIG2045 matching XC0041-XC0045)
 		public static DiagnosticDescriptor BindingIndexerNotClosed = new DiagnosticDescriptor(
 			id: "MAUIG2041",
@@ -245,6 +253,7 @@ namespace Microsoft.Maui.Controls.SourceGen
 			category: "XamlInflation",
 			defaultSeverity: DiagnosticSeverity.Error,
 			isEnabledByDefault: true);
+
 
 		// public static BuildExceptionCode TypeResolution = new BuildExceptionCode("XC", 0000, nameof(TypeResolution), "");
 		// public static BuildExceptionCode PropertyResolution = new BuildExceptionCode("XC", 0001, nameof(PropertyResolution), "");
