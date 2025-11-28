@@ -229,10 +229,10 @@ namespace Microsoft.Maui.Controls.SourceGen
 
 		public static DiagnosticDescriptor BindingPropertyNotFound = new DiagnosticDescriptor(
 			id: "MAUIG2045",
-			title: new LocalizableResourceString(nameof(MauiGResources.BindingCompilationFailed), MauiGResources.ResourceManager, typeof(MauiGResources)),
+			title: new LocalizableResourceString(nameof(MauiGResources.BindingCompilationWarning), MauiGResources.ResourceManager, typeof(MauiGResources)),
 			messageFormat: new LocalizableResourceString(nameof(MauiGResources.BindingPropertyNotFound), MauiGResources.ResourceManager, typeof(MauiGResources)),
 			category: "XamlInflation",
-			defaultSeverity: DiagnosticSeverity.Error,
+			defaultSeverity: DiagnosticSeverity.Warning,
 			isEnabledByDefault: true);
 
 		// Binding warnings (MAUIG2024 matching XC0024)
