@@ -19,7 +19,7 @@ static class SetPropertyHelpers
 
 		if (propertyName.Equals(XmlName._CreateContent))
 			return; //already handled
-			
+
 		//TODO I believe ContentProperty should be resolved here
 		var localName = propertyName.LocalName;
 		bool attached = false;
@@ -232,7 +232,7 @@ static class SetPropertyHelpers
 		}
 	}
 
-	static bool CanSetValue(IFieldSymbol? bpFieldSymbol, INode node,  SourceGenContext context, NodeSGExtensions.GetNodeValueDelegate getNodeValue)
+	static bool CanSetValue(IFieldSymbol? bpFieldSymbol, INode node, SourceGenContext context, NodeSGExtensions.GetNodeValueDelegate getNodeValue)
 	{
 		if (bpFieldSymbol == null)
 			return false;
@@ -260,7 +260,7 @@ static class SetPropertyHelpers
 
 		if (localVar.Type.InheritsFrom(bpTypeAndConverter?.type!, context))
 			return true;
-		
+
 		if (bpFieldSymbol.Type.IsInterface() && localVar.Type.Implements(bpTypeAndConverter?.type!))
 			return true;
 
@@ -274,7 +274,7 @@ static class SetPropertyHelpers
 		{
 			using (context.ProjectItem.EnableLineInfo ? PrePost.NewLineInfo(writer, (IXmlLineInfo)node, context.ProjectItem) : PrePost.NoBlock())
 			{
-				var valueString = valueNode.ConvertTo(bpFieldSymbol, writer,context, parentVar);
+				var valueString = valueNode.ConvertTo(bpFieldSymbol, writer, context, parentVar);
 				writer.WriteLine($"{parentVar.ValueAccessor}.SetValue({bpFieldSymbol.ToFQDisplayString()}, {valueString});");
 			}
 		}
@@ -283,7 +283,7 @@ static class SetPropertyHelpers
 			{
 				var localVar = getNodeValue(elementNode, context.Compilation.ObjectType);
 				string cast = string.Empty;
-				
+
 				if (HasDoubleImplicitConversion(localVar.Type, pType, context, out var conv))
 				{
 					cast = "(" + conv!.ReturnType.ToFQDisplayString() + ")";
@@ -296,7 +296,7 @@ static class SetPropertyHelpers
 						cast = $"({pType.ToFQDisplayString()})";
 					}
 				}
-				
+
 				writer.WriteLine($"{parentVar.ValueAccessor}.SetValue({bpFieldSymbol.ToFQDisplayString()}, {cast}{localVar.ValueAccessor});");
 			}
 	}
@@ -375,7 +375,7 @@ static class SetPropertyHelpers
 		{
 			// Check if this conversion operator can convert fromType to toType
 			if (SymbolEqualityComparer.Default.Equals(conversionOp.Parameters[0].Type, fromType) &&
-			    SymbolEqualityComparer.Default.Equals(conversionOp.ReturnType, toType))
+				SymbolEqualityComparer.Default.Equals(conversionOp.ReturnType, toType))
 			{
 				return true;
 			}
@@ -387,15 +387,15 @@ static class SetPropertyHelpers
 		{
 			var fromIsCollection = fromType.AllInterfaces.Any(i => i.ToString() == "System.Collections.IEnumerable") && fromType.SpecialType != SpecialType.System_String;
 			var toIsCollection = toType.AllInterfaces.Any(i => i.ToString() == "System.Collections.IEnumerable") && toType.SpecialType != SpecialType.System_String;
-			
+
 			// Both must be collections, or both must be non-collections
 			if (fromIsCollection == toIsCollection)
 			{
 				// Same inheritance chain or one is an interface
 				if (fromType.InheritsFrom(toType, context) ||
-				    toType.InheritsFrom(fromType, context) ||
-				    toType.TypeKind == TypeKind.Interface ||
-				    fromType.TypeKind == TypeKind.Interface)
+					toType.InheritsFrom(fromType, context) ||
+					toType.TypeKind == TypeKind.Interface ||
+					fromType.TypeKind == TypeKind.Interface)
 				{
 					return true;
 				}
@@ -490,9 +490,9 @@ static class SetPropertyHelpers
 
 		if (localName != null)
 			//one of those will return true, but we need the propertyType
-			_ = CanGetValue(parentVar, bpFieldSymbol, attached, context, out  propertyType) || CanGet(parentVar, localName, context, out propertyType, out propertySymbol);
-		
-		else		
+			_ = CanGetValue(parentVar, bpFieldSymbol, attached, context, out propertyType) || CanGet(parentVar, localName, context, out propertyType, out propertySymbol);
+
+		else
 			propertyType = parentVar.Type;
 
 		if (CanAddToResourceDictionary(parentVar, propertyType!, (ElementNode)valueNode, context, getNodeValue))
@@ -502,7 +502,7 @@ static class SetPropertyHelpers
 				rdAccessor = new DirectValue(propertyType!, GetOrGetValue(parentVar, bpFieldSymbol, propertySymbol, valueNode, context));
 			else
 				rdAccessor = parentVar;
-				
+
 			AddToResourceDictionary(writer, rdAccessor, (ElementNode)valueNode, context, getNodeValue);
 			return;
 		}
