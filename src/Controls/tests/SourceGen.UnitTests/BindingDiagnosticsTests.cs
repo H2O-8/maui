@@ -44,10 +44,10 @@ public class ViewModel
 			.AddSyntaxTrees(Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(csharp));
 		var result = RunGenerator<XamlGenerator>(compilation, new AdditionalXamlFile("Test.xaml", xaml), assertNoCompilationErrors: false);
 
-		// Should have a diagnostic for property not found
+		// Should have a diagnostic for property not found (Warning severity per PR #32896)
 		var diagnostic = result.Diagnostics.FirstOrDefault(d => d.Id == "MAUIG2045");
 		Assert.NotNull(diagnostic);
-		Assert.Equal(DiagnosticSeverity.Error, diagnostic.Severity);
+		Assert.Equal(DiagnosticSeverity.Warning, diagnostic.Severity);
 		
 		var message = diagnostic.GetMessage();
 		Assert.Contains("NonExistentProperty", message, System.StringComparison.Ordinal);
@@ -220,7 +220,7 @@ public class ViewModel
 	xmlns:test="clr-namespace:Test"
 	x:Class="Test.TestPage"
 	x:DataType="test:ViewModel">
-	<Label Text="{Binding Name[0]}" />
+	<Label Text="{Binding Counter[0]}" />
 </ContentPage>
 """;
 
@@ -232,7 +232,8 @@ public partial class TestPage : Microsoft.Maui.Controls.ContentPage { }
 
 public class ViewModel 
 {
-	public string Name { get; set; }
+	// int does not support indexing
+	public int Counter { get; set; }
 }
 """;
 
