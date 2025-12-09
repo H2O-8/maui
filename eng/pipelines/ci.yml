@@ -72,9 +72,10 @@ parameters:
     os: Windows
     buildScript: $(_buildScript)
     sln: '$(Build.SourcesDirectory)/Microsoft.Maui.sln'
-  - name: Azure Pipelines
-    vmImage: $(HostedMacImage)
+  - name: AcesShared
     os: macOS
+    demands:
+      - ImageOverride -equals ACES_VM_SharedPool_Sequoia
     buildScript: $(_buildScriptMacOS)
     sln: '$(Build.SourcesDirectory)/Microsoft.Maui-mac.slnf'
 
@@ -93,9 +94,10 @@ parameters:
 - name: MacOSPool
   type: object
   default:
-    name: Azure Pipelines
-    vmImage: $(HostedMacImage)
+    name: AcesShared
     os: macOS
+    demands:
+      - ImageOverride -equals ACES_VM_SharedPool_Sequoia
 
 stages:
 
