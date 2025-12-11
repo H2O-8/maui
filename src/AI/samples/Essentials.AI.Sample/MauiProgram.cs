@@ -22,11 +22,8 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 
-		var secretsStream = GetUserSecretsStream();
-		if (secretsStream != null)
-		{
-			builder.Configuration.AddJsonStream(secretsStream);
-		}
+		builder.Configuration
+			.AddJsonStream(GetUserSecretsStream() ?? throw new InvalidOperationException("User secrets file not found as embedded resource."));
 
 		builder.UseMauiApp<App>();
 
@@ -41,7 +38,7 @@ public static class MauiProgram
 		});
 
 		// Register AI
-#if ENABLE_OPENAI_CLIENT
+		#if ENABLE_OPENAI_CLIENT
 		if (UseCloudAI)
 		{
 			var aiSection = builder.Configuration.GetSection("AI");
@@ -55,7 +52,7 @@ public static class MauiProgram
 			var ichatClient = client.AsIChatClient();
 
 			builder.Services.AddSingleton<IChatClient>(provider =>
-			{
+            {
 				var lf = provider.GetRequiredService<ILoggerFactory>();
 				var realClient = ichatClient
 					.AsBuilder()
@@ -63,10 +60,10 @@ public static class MauiProgram
 					.UseFunctionInvocation()
 					.Build();
 				return realClient;
-			});
+            });
 		}
 		else
-#endif
+		#endif
 		{
 			builder.Services.AddPlatformChatClient();
 		}
