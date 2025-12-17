@@ -287,7 +287,9 @@ stages:
 
   - stage: ios_ui_tests_mono_cv2
     displayName: iOS UITests Mono CollectionView2
-    dependsOn: build_ui_tests
+    dependsOn:
+      - build_ui_tests
+      - discover_ui_test_categories
     jobs:
       - ${{ each project in parameters.projects }}:
         - ${{ if ne(project.ios, '') }}:
@@ -302,6 +304,7 @@ stages:
                 variables:
                   REQUIRED_XCODE: $(DEVICETESTS_REQUIRED_XCODE)
                   APPIUM_HOME: $(System.DefaultWorkingDirectory)/.appium/
+                  DETECTED_CATEGORIES: $[ stageDependencies.discover_ui_test_categories.detect.outputs['DetectCategories.UITestCategoryList'] ]
                 steps:
                   - template: ui-tests-steps.yml
                     parameters:
@@ -331,7 +334,9 @@ stages:
 
   - stage: ios_ui_tests_mono_carv2
     displayName: iOS UITests Mono CarouselView2
-    dependsOn: build_ui_tests
+    dependsOn:
+      - build_ui_tests
+      - discover_ui_test_categories
     jobs:
       - ${{ each project in parameters.projects }}:
         - ${{ if ne(project.ios, '') }}:
@@ -346,6 +351,7 @@ stages:
                 variables:
                   REQUIRED_XCODE: $(DEVICETESTS_REQUIRED_XCODE)
                   APPIUM_HOME: $(System.DefaultWorkingDirectory)/.appium/
+                  DETECTED_CATEGORIES: $[ stageDependencies.discover_ui_test_categories.detect.outputs['DetectCategories.UITestCategoryList'] ]
                 steps:
                   - template: ui-tests-steps.yml
                     parameters:
