@@ -71,12 +71,4 @@ public class LabelUITests : _ViewUITests
 		remote.TapStateButton();
 		VerifyScreenshot("LabelUITests_FontFamily_FontAwesome");
 	}
-
-	// Dummy test for PR category detection validation - will be removed
-	[Test]
-	[Category(UITestCategories.Label)]
-	public void DummyLabelTest()
-	{
-		Assert.Pass("Dummy test to validate PR category detection for Label");
-	}
 }
